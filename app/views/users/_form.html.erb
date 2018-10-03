@@ -48,12 +48,17 @@
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= form.select :category, ['Livre','Costas','Borboleta','Peito','Medley'] %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :role %>
+    <%= form.select :role, ['Atleta','Técnico','Diretor'] %>
   </div>
 
   <div class="actions">
