@@ -1,0 +1,15 @@
+<%= form_for :session, url: sign_in_path do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :pwd %><br />
+    <%= f.password_field :pwd, autocomplete: "off" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Entrar" %>
+  </div>
+<p>New user? <%= link_to "Sign up now!", new_user_path %></p>
+<% end %>
