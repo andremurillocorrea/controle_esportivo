@@ -23,8 +23,18 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.radio_button :status, "Not Paid" %><%= form.label :status, "Not Paid"%>
-    <%= form.radio_button :status, "Paid" %><%= form.label :status, "Paid"%>
+    <div style="display: inline-block;">
+      <%= form.radio_button :status, "Not Paid" %>
+    </div>
+    <div style="display: inline-block;">
+      <%= form.label :status_not_paid, "Not Paid"%>
+    </div>
+    <div style="display: inline-block;">
+      <%= form.radio_button :status, "Paid" %>
+    </div>
+    <div style="display: inline-block;">
+      <%= form.label :status_paid, "Paid"%>
+    </div>
   </div>
 
   <div class="actions">
