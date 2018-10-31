@@ -2,6 +2,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+	<strong>Photo:</strong>
+		<% if @user.has_photo? %>
+			<%= image_tag @user.photo_path %>
+		<% else %>
+			No photo.
+		<% end %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
@@ -50,6 +59,7 @@
   <strong>Role:</strong>
   <%= @user.role %>
 </p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
