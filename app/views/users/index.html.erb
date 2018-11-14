@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Foto</th>
       <th>Nome</th>
       <th>Email</th>
       <th>Documento</th>
@@ -22,6 +23,13 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td>
+          <% if user.profilepic? %>
+            <%= image_tag(user.profilepic_url, height: '70', weight: '70')%>
+          <% else %>  
+            <%= image_tag('profile.png', height: '70', weight: '70') %>
+          <% end %>
+        </td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.document %></td>
