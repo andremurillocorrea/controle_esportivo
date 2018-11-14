@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  style: MyString
+  distance: 1
+  pool_length: 1
+  time: 9.99
+  date: 2018-11-14
+
+two:
+  style: MyString
+  distance: 1
+  pool_length: 1
+  time: 9.99
+  date: 2018-11-14

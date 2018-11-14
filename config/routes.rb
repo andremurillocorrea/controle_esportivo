@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :performances
   resources :finances
   get 'sign_in' => 'sessions#new'
   post 'sign_in' => 'sessions#create'
