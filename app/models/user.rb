@@ -5,7 +5,9 @@ class User < ApplicationRecord
 
     validates :pwd, length: {:within => 8..30}
 	
-	has_one :finance
+	has_many :finances
 	
-	has_one :performance
+	has_many :performances
+	
+	has_many :subscriptions
 end

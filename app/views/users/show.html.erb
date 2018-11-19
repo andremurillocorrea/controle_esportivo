@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Profile</h1>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -49,6 +50,109 @@
   <strong>Role:</strong>
   <%= @user.role %>
 </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Add Date</th>
+      <th>Debt</th>
+      <th>Value</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<h1>Finances</h1>
+
+  <tbody>
+    <% @total = 0%>
+    <% @user.finances.each do |finance| %>
+      <% if finance.status == "Not Paid"%>
+        <% @total = @total + finance.value%>
+      <% end %>
+      <tr>
+        <td><%= finance.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= finance.debt %></td>
+        <td><%= finance.value %></td>
+        <td><%= finance.status %></td>
+        <!--<td><%= link_to 'Show', finance %></td>-->
+        <td><%= link_to 'Edit Debt', edit_finance_path(finance) %></td>
+        <td><%= link_to 'Destroy', finance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+	<tr>
+       <td></td>
+      <td><p><strong>Debt Total</strong></p></td>
+      <td><%= @total %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Performances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Style</th>
+      <th>Distance</th>
+      <th>Pool length</th>
+      <th>Time</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.performances.each do |performance| %>
+      <tr>
+        <td><%= performance.style %></td>
+        <td><%= String(performance.distance) + 'm' %></td>
+        <td><%= String(performance.pool_length) + 'm' %></td>
+        <% if performance.time >= 60 %>
+          <% @minute = Integer(performance.time)/60 %>
+          <% @remainder_sec = (performance.time%60).floor %>
+          <% @remainder = Integer((performance.time%1)*100)%>
+          <td><%= String(@minute) + '.' + String(@remainder_sec) + ':' + String(@remainder) %></td>
+        <% else %> 
+          <td><%= performance.time %></td>
+        <% end %>
+        <td><%= performance.date.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to 'Show', performance %></td>
+        <td><%= link_to 'Edit', edit_performance_path(performance) %></td>
+        <td><%= link_to 'Destroy', performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Subscriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+	  <th>Date</th>
+      <th>Status</th>
+      <th>Additional info</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.subscriptions.each do |subscription| %>
+      <tr>
+        <td><%= subscription.event.name %></td>
+		<td><%= subscription.event.date %></td>
+        <td><%= subscription.status %></td>
+        <td><%= subscription.additional_info %></td>
+        <td><%= link_to 'Show', subscription %></td>
+        <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
+        <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

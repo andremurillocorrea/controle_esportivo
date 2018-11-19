@@ -9,7 +9,11 @@
               <li><%= link_to "Profile", current_user %></li>
 			  <li><%= link_to "Finance", finances_path %></li>
 			  <li><%= link_to "Performance", performances_path %></li>
-              <li>
+			  <li><%= link_to "Events", events_path %></li>
+              <ul>
+				<li><%= link_to "Subscriptions", subscriptions_path %></li>
+			  </ul>
+			  <li>
                 <%= link_to "Log out", sign_out_path, method: "delete" %>
               </li>
             </ul>

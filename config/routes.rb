@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :subscriptions
+  resources :events
   resources :performances
   resources :finances
   get 'sign_in' => 'sessions#new'
