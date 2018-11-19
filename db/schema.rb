@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_180750) do
+ActiveRecord::Schema.define(version: 2018_11_19_164752) do
 
   create_table "finances", force: :cascade do |t|
     t.string "debt"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2018_11_14_180750) do
     t.datetime "updated_at", null: false
     t.decimal "value", precision: 4, scale: 2
     t.string "status"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_finances_on_user_id"
   end
 
   create_table "performances", force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 2018_11_14_180750) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_performances_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

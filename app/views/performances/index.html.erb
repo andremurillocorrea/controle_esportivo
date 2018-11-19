@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+	  <th>User</th>
       <th>Style</th>
       <th>Distance</th>
       <th>Pool length</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @performances.each do |performance| %>
       <tr>
+	    <td><%= performance.user.name %></td>
         <td><%= performance.style %></td>
         <td><%= String(performance.distance) + 'm' %></td>
         <td><%= String(performance.pool_length) + 'm' %></td>

@@ -4,4 +4,8 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
 
     validates :pwd, length: {:within => 8..30}
+	
+	has_one :finance
+	
+	has_one :performance
 end

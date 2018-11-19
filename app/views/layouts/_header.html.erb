@@ -7,7 +7,8 @@
           <li>
             <ul>
               <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", '#' %></li>
+			  <li><%= link_to "Finance", finances_path %></li>
+			  <li><%= link_to "Performance", performances_path %></li>
               <li>
                 <%= link_to "Log out", sign_out_path, method: "delete" %>
               </li>

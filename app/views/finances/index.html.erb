@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Add Date</th>
+	  <th>User</th>
       <th>Debt</th>
       <th>Value</th>
       <th>Status</th>
@@ -21,6 +22,7 @@
       <% end %>
       <tr>
         <td><%= finance.created_at.strftime("%d/%m/%Y") %></td>
+		<td><%= finance.user.name %></td>
         <td><%= finance.debt %></td>
         <td><%= finance.value %></td>
         <td><%= finance.status %></td>
