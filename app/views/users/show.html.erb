@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+	<strong>Your Photo</strong>
+</p>
+
+<p>
+		<% if @user.has_photo? %>
+			<%= image_tag(@user.photo_path, size:"248x360", alt:"Edit Entry") %>
+		<% else %>
+			No photo.
+		<% end %>
+</p>
+
 <h1>Profile</h1>
 <p>
   <strong>Name:</strong>
@@ -154,5 +166,5 @@
 </table>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit Profile', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
