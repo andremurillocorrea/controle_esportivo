@@ -24,11 +24,11 @@
     <% @users.each do |user| %>
       <tr>
         <td>
-          <% if user.profilepic? %>
-            <%= image_tag(user.profilepic_url, height: '70', weight: '70')%>
-          <% else %>  
-            <%= image_tag('profile.png', height: '70', weight: '70') %>
-          <% end %>
+        <% if @user.has_photo? %>
+          <%= image_tag @user.photo_path %>
+        <% else %>
+          <%= image_tag 'profile.png',:size => '60x60' %>
+        <% end %>
         </td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>

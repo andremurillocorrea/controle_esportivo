@@ -31,9 +31,7 @@ class User < ApplicationRecord
 
     validates :pwd, length: {:within => 8..30}
 	
-	after_save :store_photo
-	
-	
+	after_save :store_photo	
 	
 	private
 		def store_photo
@@ -45,8 +43,5 @@ class User < ApplicationRecord
 				@file_data = nil
 			end
 		end
-
-	
-	
 	
 end
