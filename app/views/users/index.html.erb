@@ -24,8 +24,8 @@
     <% @users.each do |user| %>
       <tr>
         <td>
-        <% if @user.has_photo? %>
-          <%= image_tag @user.photo_path %>
+        <% if user.has_photo? %>
+          <%= image_tag user.photo_path %>
         <% else %>
           <%= image_tag 'profile.png',:size => '60x60' %>
         <% end %>

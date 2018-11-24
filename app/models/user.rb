@@ -1,7 +1,5 @@
 class User < ApplicationRecord
-
-    # mount_uploader :profilepic, ProfilePicUploader
-
+	
     validates :name, :email, :document, :pwd, :age, :height, :weight, :category, :description, presence: true
 
     def photo=(file_data)

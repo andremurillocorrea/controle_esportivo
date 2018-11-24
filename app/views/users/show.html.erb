@@ -3,7 +3,8 @@
 <p>
 	<strong>Photo:</strong>
 		<% if @user.has_photo? %>
-			<%= image_tag @user.photo_path %>
+			<%-#= image_tag @user.photo_path -%>
+      <%= image_tag('/5.jpg')%>
 		<% else %>
 			No photo.
 		<% end %>
