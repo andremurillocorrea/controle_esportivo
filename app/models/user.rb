@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	
+	#has_secure_password
     validates :name, :email, :document, :pwd, :age, :height, :weight, :category, :description, presence: true
 
     def photo=(file_data)

@@ -1,65 +1,75 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-	<strong>Photo:</strong>
-		<% if @user.has_photo? %>
-			<%-#= image_tag @user.photo_path -%>
-      <%= image_tag('/5.jpg')%>
-		<% else %>
-			No photo.
-		<% end %>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <% if @user.has_photo? %>
+      <div class="profile-img">
+        <%= image_tag('profile.png',class: "rounded")%>
+        <div class="file btn btn-lg btn-primary">
+            Editar Foto
+            <input type="file" name="file"/>
+        </div>
+      </div>
+    <% else %>
+      No photo.
+    <% end %>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <div class="col-md-8">
+    <div class="profile-desc">
+      <h2 class="name"><%= @user.name %></h2>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+      <h3 class="description"><small><%= @user.description %></small></h3>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Document:</strong>
-  <%= @user.document %>
-</p>
+  <!--p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <strong>Pwd:</strong>
-  <%= @user.pwd %>
-</p>
+  <p>
+    <strong>Document:</strong>
+    <%= @user.document %>
+  </p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @user.age %>
-</p>
+  <p>
+    <strong>Pwd:</strong>
+    <%= @user.pwd %>
+  </p>
 
-<p>
-  <strong>Height:</strong>
-  <%= @user.height %>
-</p>
+  <p>
+    <strong>Age:</strong>
+    <%= @user.age %>
+  </p>
 
-<p>
-  <strong>Weight:</strong>
-  <%= @user.weight %>
-</p>
+  <p>
+    <strong>Height:</strong>
+    <%= @user.height %>
+  </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @user.category %>
-</p>
+  <p>
+    <strong>Weight:</strong>
+    <%= @user.weight %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @user.description %>
-</p>
+  <p>
+    <strong>Category:</strong>
+    <%= @user.category %>
+  </p>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @user.description %>
+  </p>
 
+  <p>
+    <strong>Role:</strong>
+    <%= @user.role %>
+  </p-->
+
+</div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

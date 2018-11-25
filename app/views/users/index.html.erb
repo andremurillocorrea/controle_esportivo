@@ -7,9 +7,9 @@
     <tr>
       <th>Foto</th>
       <th>Nome</th>
-      <th>Email</th>
+      <!--th>Email</th>
       <th>Documento</th>
-      <th>Senha</th>
+      <th>Senha</th-->
       <th>Idade</th>
       <th>Altura</th>
       <th>Peso</th>
@@ -22,30 +22,32 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td>
-        <% if user.has_photo? %>
-          <%= image_tag user.photo_path %>
-        <% else %>
-          <%= image_tag 'profile.png',:size => '60x60' %>
-        <% end %>
-        </td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.document %></td>
-        <td><%= user.pwd %></td>
-        <td><%= user.age %></td>
-        <td><%= user.height %></td>
-        <td><%= user.weight %></td>
-        <td><%= user.category %></td>
-        <td><%= user.description %></td>
-        <td><%= user.role %></td>
-        <td><%= link_to 'Visualizar', user %></td>
+      <% if user.role == 'Atleta'%>
+        <tr>
+          <td>
+          <% if user.has_photo? %>
+            <%= image_tag user.photo_path %>
+          <% else %>
+            <%= image_tag 'profile.png',:size => '60x60' %>
+          <% end %>
+          </td>
+          <td><%= user.name %></td>
+          <!--td><%= user.email %></td>
+          <td><%= user.document %></td>
+          <td><%= user.pwd %></td-->
+          <td><%= user.age %></td>
+          <td><%= user.height %></td>
+          <td><%= user.weight %></td>
+          <td><%= user.category %></td>
+          <td><%= user.description %></td>
+          <td><%= user.role %></td>
+          <td><%= link_to 'Visualizar', user %></td>
 
-        <% if @user.role == 'Técnico' %>
-          <td><%= link_to 'Editar', edit_user_path(user) %></td>
-          <td><%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-        <% end %>
+          <% if @user.role == 'Técnico' %>
+            <td><%= link_to 'Editar', edit_user_path(user) %></td>
+            <td><%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
+      <% end %>
 
       </tr>
     <% end %>
@@ -53,5 +55,59 @@
 </table>
 
 <br>
+
+<h1>Gestão da Equipe</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Foto</th>
+      <th>Nome</th>
+      <!--th>Email</th>
+      <th>Documento</th>
+      <th>Senha</th>
+      <th>Idade</th>
+      <th>Altura</th>
+      <th>Peso</th>
+      <th>Modalidade</th>
+      <th>Descrição</th-->
+      <th>Papel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <% if (user.role == 'Técnico' || user.role == 'Diretor')%>
+        <tr>
+          <td>
+          <% if user.has_photo? %>
+            <%= image_tag user.photo_path %>
+          <% else %>
+            <%= image_tag 'profile.png',:size => '60x60' %>
+          <% end %>
+          </td>
+          <td><%= user.name %></td>
+          <!--td><%= user.email %></td>
+          <td><%= user.document %></td>
+          <td><%= user.pwd %></td>
+          <td><%= user.age %></td>
+          <td><%= user.height %></td>
+          <td><%= user.weight %></td>
+          <td><%= user.category %></td>
+          <td><%= user.description %></td-->
+          <td><%= user.role %></td>
+          <td><%= link_to 'Visualizar', user %></td>
+
+          <% if @user.role == 'Técnico' %>
+            <td><%= link_to 'Editar', edit_user_path(user) %></td>
+            <td><%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
+
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Novo Usuário', new_user_path %>
