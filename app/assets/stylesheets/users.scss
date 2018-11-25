@@ -45,14 +45,29 @@ table {
     top: 0;
 }
 
-.profile-desc {
+.profile-header {
     padding-right: 70px;
+    margin-bottom: 50px;
 }
 
-.profile-desc .name {
+.profile-header .name {
     text-align: center;
 }
 
-.profile-desc .description {
-    text-align: center; 
+.profile-header .description {
+    text-align: justify; 
+}
+
+.profile-details {
+    width: 100%;
+}
+
+.profile-details h6 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.new_user {
+    padding-top: 20px;
+    text-align: center;
 }
