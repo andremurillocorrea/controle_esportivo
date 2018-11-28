@@ -12,33 +12,33 @@
   <% end %>
   
   <div class="field">
-    <%= form.label :user_id %>
+    <%= form.label "Usuário" %>
     <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
   </div>
  
   <div class="field">
-    <%= form.label :debt %>
+    <%= form.label "Descrição" %>
     <%= form.text_field :debt %>
   </div>
 
   <div class="field">
-    <%= form.label :value %>
+    <%= form.label "Valor" %>
     <%= form.text_field :value %>
   </div>
 
   <div class="field">
-    <%= form.label :status %>
+    <%= form.label "Status" %>
     <div style="display: inline-block;">
-      <%= form.radio_button :status, "Not Paid" %>
+      <%= form.radio_button :status, "Não pago" %>
     </div>
     <div style="display: inline-block;">
-      <%= form.label :status_not_paid, "Not Paid"%>
+      <%= form.label :status_not_paid, "Não pago"%>
     </div>
     <div style="display: inline-block;">
-      <%= form.radio_button :status, "Paid" %>
+      <%= form.radio_button :status, "Pago" %>
     </div>
     <div style="display: inline-block;">
-      <%= form.label :status_paid, "Paid"%>
+      <%= form.label :status_paid, "Pago"%>
     </div>
   </div>
 
