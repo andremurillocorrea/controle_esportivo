@@ -15,6 +15,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @subscription = Subscription.new
+    @user = User.find(session[:user_id])
   end
 
   # GET /subscriptions/1/edit
@@ -25,6 +26,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions.json
   def create
     @subscription = Subscription.new(subscription_params)
+
 
     respond_to do |format|
       if @subscription.save

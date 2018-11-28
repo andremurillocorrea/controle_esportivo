@@ -1,6 +1,5 @@
 class PerformancesController < ApplicationController
   before_action :set_performance, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /performances
   # GET /performances.json
@@ -71,14 +70,5 @@ class PerformancesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def performance_params
       params.require(:performance).permit(:user_id, :style, :distance, :pool_length, :time, :date)
-    end
-	
-	def set_user
-      @user = User.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :email, :document, :pwd, :age, :height, :weight, :category, :description, :role, :finance, :performance)
     end
 end

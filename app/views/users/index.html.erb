@@ -26,7 +26,7 @@
         <tr>
           <td>
           <% if user.has_photo? %>
-            <%= link_to image_tag(user.photo_path,:size => '60x60'),user %>
+            <%= link_to image_tag('profile.png',:size => '60x60'),user %>
           <% else %>
             <%= image_tag 'profile.png',:size => '60x60' %>
           <% end %>
@@ -35,9 +35,9 @@
           <!--td><%= user.email %></td>
           <td><%= user.document %></td>
           <td><%= user.pwd %></td-->
-          <td><%= user.age %></td>
-          <td><%= user.height %></td>
-          <td><%= user.weight %></td>
+          <td><%= user.age %> anos</td>
+          <td><%= user.height %> m</td>
+          <td><%= user.weight %> kg</td>
           <td><%= user.category %></td>
           <!--td><%= user.description %></td-->
           <td><%= user.role %></td>
@@ -81,7 +81,7 @@
         <tr>
           <td>
           <% if user.has_photo? %>
-            <%= link_to image_tag(user.photo_path,:size => '60x60') %>
+            <%= link_to image_tag('profile.png',:size => '60x60') %>
           <% else %>
             <%= image_tag 'profile.png',:size => '60x60' %>
           <% end %>
