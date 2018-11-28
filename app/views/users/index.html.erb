@@ -26,7 +26,7 @@
         <tr>
           <td>
           <% if user.has_photo? %>
-            <%= link_to image_tag('profile.png',:size => '60x60'),user %>
+            <%= link_to image_tag(user.photo_path,:size => '60x60'),user %>
           <% else %>
             <%= image_tag 'profile.png',:size => '60x60' %>
           <% end %>
@@ -81,7 +81,7 @@
         <tr>
           <td>
           <% if user.has_photo? %>
-            <%= link_to image_tag('profile.png',:size => '60x60') %>
+            <%= link_to image_tag(user.photo_path,:size => '60x60') %>
           <% else %>
             <%= image_tag 'profile.png',:size => '60x60' %>
           <% end %>

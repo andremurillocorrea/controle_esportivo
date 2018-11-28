@@ -6,7 +6,7 @@
     <div class="col-md-4">
       <% if @user.has_photo? %>
         <div class="profile-img">
-          <%= image_tag('profile.png',class: "rounded")%>
+          <%= image_tag(@user.photo_path,class: "rounded")%>
           <div class="file btn btn-lg btn-primary">
               Editar Foto
               <input type="file" name="file"/>
@@ -98,6 +98,7 @@
 
 <h1>Finances</h1>
 
+<table>
   <tbody>
     <% @total = 0%>
     <% @user.finances.each do |finance| %>
