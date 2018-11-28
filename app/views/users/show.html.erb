@@ -83,8 +83,8 @@
     <%= @user.role %>
   </p-->
 
-</div>
-
+<div class="container">
+<div class="animation">
 <table>
   <thead>
     <tr>
@@ -122,7 +122,11 @@
     </tr>
   </tbody>
 </table>
+</div>
+</div>
 
+<div class="container">
+<div class="animation">
 <h1>Performances</h1>
 
 <table>
@@ -159,7 +163,10 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
 
+<div class="animation">
 <h1>Subscriptions</h1>
 
 <table>
@@ -187,6 +194,16 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+
+<script>
+jQuery(document).ready(function() {
+    jQuery('.animation').addClass("hidden").viewportChecker({
+        classToAdd: 'visible animated fadeIn speed',
+        offset: 100
+       });
+});
+</script>
