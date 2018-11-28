@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @performance.style %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @performance.distance %>
+</p>
+
+<p>
+  <strong>Pool length:</strong>
+  <%= @performance.pool_length %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @performance.time %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @performance.date %>
+</p>
+
+<%= link_to 'Edit', edit_performance_path(@performance) %> |
+<%= link_to 'Back', performances_path %>

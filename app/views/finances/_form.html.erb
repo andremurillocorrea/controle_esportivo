@@ -1,0 +1,48 @@
+<%= form_for(@finance) do |form| %>
+  <% if finance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(finance.errors.count, "error") %> prohibited this finance from being saved:</h2>
+
+      <ul>
+      <% finance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
+  </div>
+ 
+  <div class="field">
+    <%= form.label :debt %>
+    <%= form.text_field :debt %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <div style="display: inline-block;">
+      <%= form.radio_button :status, "Not Paid" %>
+    </div>
+    <div style="display: inline-block;">
+      <%= form.label :status_not_paid, "Not Paid"%>
+    </div>
+    <div style="display: inline-block;">
+      <%= form.radio_button :status, "Paid" %>
+    </div>
+    <div style="display: inline-block;">
+      <%= form.label :status_paid, "Paid"%>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

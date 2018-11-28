@@ -1,0 +1,37 @@
+<%= form_with(model: subscription, local: true) do |form| %>
+  <% if subscription.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+
+      <ul>
+      <% subscription.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="field">
+    <%= form.label :user_id %>
+    <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_id %>
+    <%= form.collection_select(:event_id, Event.all, :id, :name, prompt: false)%>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status , ['Confirmed', 'Pendent']  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :additional_info %>
+    <%= form.text_area :additional_info %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

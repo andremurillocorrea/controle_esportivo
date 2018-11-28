@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Performances</h1>
+
+<table>
+  <thead>
+    <tr>
+	  <th>User</th>
+      <th>Style</th>
+      <th>Distance</th>
+      <th>Pool length</th>
+      <th>Time</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @performances.each do |performance| %>
+      <tr>
+	    <td><%= performance.user.name %></td>
+        <td><%= performance.style %></td>
+        <td><%= String(performance.distance) + 'm' %></td>
+        <td><%= String(performance.pool_length) + 'm' %></td>
+        <% if performance.time >= 60 %>
+          <% @minute = Integer(performance.time)/60 %>
+          <% @remainder_sec = (performance.time%60).floor %>
+          <% @remainder = Integer((performance.time%1)*100)%>
+          <td><%= String(@minute) + '.' + String(@remainder_sec) + ':' + String(@remainder) %></td>
+        <% else %> 
+          <td><%= performance.time %></td>
+        <% end %>
+        <td><%= performance.date.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to 'Show', performance %></td>
+        <td><%= link_to 'Edit', edit_performance_path(performance) %></td>
+        <td><%= link_to 'Destroy', performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Performance', new_performance_path %>

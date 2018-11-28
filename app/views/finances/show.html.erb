@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Debt:</strong>
+  <%= @finance.debt %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @finance.value %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @finance.status %>
+</p>
+
+<%= link_to 'Edit', edit_finance_path(@finance) %> |
+<%= link_to 'Back', finances_path %>

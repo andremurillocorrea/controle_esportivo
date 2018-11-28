@@ -1,0 +1,47 @@
+<%= form_with(model: performance, local: true) do |form| %>
+  <% if performance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(performance.errors.count, "error") %> prohibited this performance from being saved:</h2>
+
+      <ul>
+      <% performance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
+  </div>
+
+  <div class="field">
+    <%= form.label :style %>
+    <%= form.select :style, ['--', 'Butterfly', 'Backstroke', 'Breaststroke', 'Freestyle', 'Medley'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :distance %>
+    <%= form.select :distance, ['--', 50, 100, 200, 400, 800, 1500] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pool_length %>
+    <%= form.select :pool_length, ['--', 25, 50] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time %>
+    <%= form.text_field :time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, {order:  [:day, :month, :year]}   %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
