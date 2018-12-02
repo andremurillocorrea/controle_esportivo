@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @treino.Data %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @treino.Descricao %>
+</p>
+
+<p>
+  <strong>Lista de presença:</strong>
+  <% @treino.users.each do |user| %>
+		<%= user.name %>
+  <% end %>
+</p>
+	
+	
+</p>
+
+<%= link_to 'Edit', edit_treino_path(@treino) %> |
+<%= link_to 'Back', treinos_path %>

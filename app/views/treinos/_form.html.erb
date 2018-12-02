@@ -1,0 +1,36 @@
+<%= form_with(model: treino, local: true) do |form| %>
+  <% if treino.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(treino.errors.count, "error") %> prohibited this treino from being saved:</h2>
+
+      <ul>
+      <% treino.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Data %>
+    <%= form.date_select :Data %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Descricao %>
+    <%= form.text_area :Descricao %>
+  </div>
+  
+  <div class="field">
+    <%= hidden_field_tag "[user_ids][]", nil %>
+    <% User.all.each do |user| %>
+		<%= check_box_tag "treino[user_ids][]", user.id, @treino.user_ids.include?(user.id), id: dom_id(user) %>
+	    <%= user.name %><br>
+	<% end %>
+  </div>
+  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
