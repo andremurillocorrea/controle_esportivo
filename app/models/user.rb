@@ -2,7 +2,9 @@ class User < ApplicationRecord
 	#has_secure_password
     validates :name, :email, :document, :pwd, :age, :height, :weight, :category, :description, presence: true
 	
-	has_and_belongs_to_many :treinos
+    has_many :presenca
+	
+	has_many :treinos, through: :presenca
 	
 	has_many :finances
 	

@@ -69,6 +69,6 @@ class TreinosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def treino_params
-      params.require(:treino).permit(:Data, :Descricao)
+      params.require(:treino).permit(:Data, :Descricao, :user_ids => [])
     end
 end
