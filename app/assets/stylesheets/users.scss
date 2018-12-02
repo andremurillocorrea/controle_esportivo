@@ -116,8 +116,11 @@ animation-name: fadeIn;
 animation-duration: 2.5s;
 }
 
-.container{
+.new_container{
     min-height: 600px;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .new_performance {
     text-align: center;

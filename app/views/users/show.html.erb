@@ -82,8 +82,8 @@
     <strong>Role:</strong>
     <%= @user.role %>
   </p-->
-
-<div class="container">
+<br><br><br>
+<div class="new_container" style="background-color:rgb(224,224,224);">
 <div class="animation">
 <table>
   <thead>
@@ -127,7 +127,7 @@
 </div>
 </div>
 
-<div class="container">
+<div class="new_container">
 <div class="animation">
 <% if(@current_user.role == 'Técnico' || @current_user.role == 'Diretor') %>
   <div class="new_finance">
@@ -174,19 +174,24 @@
 </div>
 </div>
 
+<div class="new_container" style="background-color:rgb(224,224,224);">
 <div class="animation">
 <h1>Subscriptions</h1>
 <div class="new_performance">
   <%= link_to 'Nova Performance', new_performance_path %>
 </div>
+</div>
+</div>
 
+<div class="new_container">
+<div class="animation">
 <h1>Inscrições</h1>
 
 <table>
   <thead>
     <tr>
       <th>Evento</th>
-	  <th>Data</th>
+	    <th>Data</th>
       <th>Status</th>
       <th>Info. Adicional</th>
       <th colspan="3"></th>
@@ -197,7 +202,7 @@
     <% @user.subscriptions.each do |subscription| %>
       <tr>
         <td><%= subscription.event.name %></td>
-		<td><%= subscription.event.date %></td>
+		    <td><%= subscription.event.date %></td>
         <td><%= subscription.status %></td>
         <td><%= subscription.additional_info %></td>
         <!--td><%= link_to 'Show', subscription %></td-->
@@ -208,10 +213,12 @@
     <% end %>
   </tbody>
 </table>
-</div>
+
 
 <div class="new_subscription">
   <%= link_to 'Nova Inscrição', new_subscription_path %>
+</div>
+</div>
 </div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
