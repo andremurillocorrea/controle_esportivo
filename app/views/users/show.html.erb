@@ -171,22 +171,22 @@
     <% end %>
   </tbody>
 </table>
-</div>
-</div>
-
-<div class="new_container" style="background-color:rgb(224,224,224);">
-<div class="animation">
-<h1>Subscriptions</h1>
 <div class="new_performance">
-  <%= link_to 'Nova Performance', new_performance_path %>
+<%= link_to 'Nova Performance', new_performance_path %>
 </div>
 </div>
 </div>
 
-<div class="new_container">
+<div class="new_container" style="background-color:rgba(224,224,224,0.3);">
 <div class="animation">
 <h1>Inscrições</h1>
 
+
+<%= month_calendar do |date| %>
+  <%= date %> 
+<% end %>
+
+<!--
 <table>
   <thead>
     <tr>
@@ -205,14 +205,14 @@
 		    <td><%= subscription.event.date %></td>
         <td><%= subscription.status %></td>
         <td><%= subscription.additional_info %></td>
-        <!--td><%= link_to 'Show', subscription %></td-->
+        <!--td><%= link_to 'Show', subscription %></td
 
         <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_subscription_path(subscription)%></td>
         <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), subscription, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
-</table>
+</table>-->
 
 
 <div class="new_subscription">

@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
+ <% @current_user ||= User.find_by(id: session[:user_id]) %>
  <div class="field">
     <%= form.label :user_id %>
-    <% if(@user.role == 'Técnico' || @user.role == 'Diretor') %>
+    <% if(@current_user.role == 'Técnico' || @current_user.role == 'Diretor') %>
       <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
     <% else %>
-      <%= @user.name%>
+      <%= @current_user.name%>
     <% end%>
   </div>
 
