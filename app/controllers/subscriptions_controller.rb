@@ -15,7 +15,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @subscription = Subscription.new
-    @user = User.find(session[:user_id])
+    @current_user = User.find(session[:user_id])
   end
 
   # GET /subscriptions/1/edit

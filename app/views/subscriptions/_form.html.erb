@@ -13,11 +13,7 @@
 
  <div class="field">
     <%= form.label :user_id %>
-    <% if(@user.role == 'Técnico' || @user.role == 'Diretor') %>
-      <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
-    <% else %>
-      <%= @user.name%>
-    <% end%>
+    <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
   </div>
 
   <div class="field">
