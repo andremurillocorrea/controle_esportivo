@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :treinos
   resources :subscriptions
   resources :events
   resources :performances
