@@ -21,17 +21,17 @@
   <%= f.submit "Busca" %>
   
 <% end %>
-<h1>Performances</h1>
+<h1>Desempenho</h1>
 
 <table>
   <thead>
     <tr>
-	  <th>User</th>
-      <th>Style</th>
-      <th>Distance</th>
-      <th>Pool length</th>
-      <th>Time</th>
-      <th>Date</th>
+	  <th>Atleta</th>
+      <th>Estilo</th>
+      <th>Distância</th>
+      <th>Tam. Piscina</th>
+      <th>Tempo</th>
+      <th>Data</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -52,9 +52,10 @@
           <td><%= performance.time %></td>
         <% end %>
         <td><%= performance.date.strftime("%d/%m/%Y") %></td>
-        <td><%= link_to 'Show', performance %></td>
-        <td><%= link_to 'Edit', edit_performance_path(performance) %></td>
-        <td><%= link_to 'Destroy', performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if (@user.role == 'Técnico' || @user.role == 'Diretor' || @user.name == performance.user.name) %>
+			<td><%= link_to image_tag('edit.png',:size => '20x20'), edit_performance_path(performance) %></td>
+			<td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
       </tr>
     <% end %>
   </tbody>
@@ -62,4 +63,4 @@
 
 <br>
 
-<%= link_to 'New Performance', new_performance_path %>
+<%= link_to 'Adicionar nova performance', new_performance_path %>

@@ -1,11 +1,12 @@
 class TreinosController < ApplicationController
   before_action :set_treino, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user
   # GET /treinos
   # GET /treinos.json
   def index
     @q = Treino.ransack(params[:q])
 	@treinos = @q.result
+	@user = User.find(session[:user_id])
   end
 
   # GET /treinos/1
@@ -63,7 +64,13 @@ class TreinosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+ 
+   # Use callbacks to share common setup or constraints between actions.
+   
+    def set_user
+		@user = User.find(session[:user_id])
+	end
+	
     def set_treino
       @treino = Treino.find(params[:id])
     end

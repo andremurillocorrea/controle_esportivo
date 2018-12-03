@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nome do Evento:</strong>
   <%= @event.name %>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @event.date %>
+  <strong>Data:</strong>
+  <%= @event.date.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
@@ -16,9 +16,24 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descrição:</strong>
   <%= @event.description %>
 </p>
+
+<p>
+  <strong>Inscritos:</strong>
+  <% @event.subscriptions.each do |subscription| %>
+	<%= subscription.user.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Total de Inscritos:</strong>
+  <%= @event.subscriptions.count%>
+</p>
+
+
+
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :Data %>
-    <%= form.date_select :Data %>
+    <%= form.date_select :Data {order:  [:day, :month, :year]} %>
   </div>
 
   <div class="field">

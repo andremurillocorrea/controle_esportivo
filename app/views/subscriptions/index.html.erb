@@ -24,9 +24,9 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Event</th>
-	  <th>Date</th>
+      <th>Usuário</th>
+      <th>Evento</th>
+	  <th>Data</th>
       <th>Status</th>
       <th colspan="3"></th>
     </tr>
@@ -38,7 +38,7 @@
       <tr>
         <td><%= subscription.user.name %></td>
         <td><%= subscription.event.name %></td>
-		<td><%= subscription.event.date %></td>
+		<td><%= subscription.event.date.strftime("%d/%m/%Y") %></td>
         <td><%= subscription.status %></td>
 		<td><%= link_to 'Ver', subscription %></td>
 		<% if (@user.role == 'Técnico' || @user.role == 'Diretor' || @user.name == subscription.user.name) %>
@@ -52,4 +52,4 @@
 
 <br>
 
-<%= link_to 'New Subscription', new_subscription_path %>
+<%= link_to 'Nova Inscrição', new_subscription_path %>

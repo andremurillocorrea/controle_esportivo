@@ -6,7 +6,9 @@
             <%= link_to "Eventos", events_path %>
 			<%= link_to "Treinos", treinos_path %>
 			<%= link_to "Desempenho", performances_path %>
-			
+			<% if (@user.role == 'Diretor')%>
+			  <%= link_to "Finanças", finances_path %>	
+			<% end %>
             <%= link_to "Sair", sign_out_path, method: "delete" %>
           <% else %>
             <%= link_to "NÃO ESTÁ LOGADO!", root_path %>

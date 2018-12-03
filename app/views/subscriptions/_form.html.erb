@@ -17,7 +17,7 @@
     <% if(@current_user.role == 'Técnico' || @current_user.role == 'Diretor') %>
       <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
     <% else %>
-      <%= @current_user.name%>
+      <%= form.select :user_id, [@current_user.id] %>
     <% end%>
   </div>
 

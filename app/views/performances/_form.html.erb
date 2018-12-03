@@ -11,28 +11,33 @@
     </div>
   <% end %>
   
-  <div class="field">
+  <% @current_user ||= User.find_by(id: session[:user_id]) %>
+ <div class="field">
     <%= form.label :user_id %>
-    <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
+    <% if(@current_user.role == 'Técnico' || @current_user.role == 'Diretor') %>
+      <%= form.collection_select(:user_id, User.all, :id, :name, prompt: false)%>
+    <% else %>
+      <%= form.select :user_id, [@current_user.id] %>
+    <% end%>
   </div>
 
   <div class="field">
-    <%= form.label :style %>
-    <%= form.select :style, ['--', 'Borboleta', 'Costas', 'Peito', 'Livre', 'Medley'] %>
+    <%= form.label :Estilo %>
+    <%= form.select :style, ['Borboleta', 'Costas', 'Peito', 'Livre', 'Medley'] %>
   </div>
 
   <div class="field">
-    <%= form.label :distance %>
-    <%= form.select :distance, ['--', 50, 100, 200, 400, 800, 1500] %>
+    <%= form.label :Distância %>
+    <%= form.select :distance, [50, 100, 200, 400, 800, 1500] %>
   </div>
 
   <div class="field">
-    <%= form.label :pool_length %>
-    <%= form.select :pool_length, ['--', 25, 50] %>
+    <%= form.label :Tamanho_da_piscina %>
+    <%= form.select :pool_length, [25, 50] %>
   </div>
 
   <div class="field">
-    <%= form.label :time %>
+    <%= form.label :Tempo %>
     <%= form.text_field :time %>
   </div>
 

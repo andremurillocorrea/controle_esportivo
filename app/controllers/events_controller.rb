@@ -1,11 +1,12 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user
   # GET /events
   # GET /events.json
   def index
     @q = Event.ransack(params[:q])
 	@events = @q.result.includes(:subscriptions)
+	@user = User.find(session[:user_id])
   end
 
   # GET /events/1
@@ -63,6 +64,11 @@ class EventsController < ApplicationController
   end
 
   private
+  
+    def set_user
+		@user = User.find(session[:user_id])
+	end
+	
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
