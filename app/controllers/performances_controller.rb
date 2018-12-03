@@ -4,7 +4,8 @@ class PerformancesController < ApplicationController
   # GET /performances
   # GET /performances.json
   def index
-    @performances = Performance.all
+    @q = Performance.ransack(params[:q])
+	@performances = @q.result.includes(:user)
   end
 
   # GET /performances/1

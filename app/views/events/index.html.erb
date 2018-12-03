@@ -1,5 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+<%= search_form_for @q do |f| %>
+  <%= f.label :Nome_do_evento %>
+  <%= f.search_field :name_cont %>
+    
+  <%= f.label :Data_minima %>
+  <%= f.date_select :date_gteq, {order:  [:day, :month, :year],include_blank: true}   %>
+
+
+  <%= f.label :Data_maxima %>
+  <%= f.date_select :date_lteq, {order:  [:day, :month, :year],include_blank: true}   %>
+  
+  <div>
+  <%= f.label :Local_do_evento %>
+  <%= f.search_field :local_cont %>
+  
+  <%= f.label :Descrição %>
+  <%= f.search_field :description_cont %>
+  
+  <%= f.submit "Busca" %>
+  </div>
+<% end %>
+
 <h1>Events</h1>
 
 <table>

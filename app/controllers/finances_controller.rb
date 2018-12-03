@@ -4,7 +4,9 @@ class FinancesController < ApplicationController
   # GET /finances
   # GET /finances.json
   def index
-    @finances = Finance.order(:id)
+    #@finances = Finance.order(:id)
+	@q = Finance.ransack(params[:q])
+	@finances = @q.result.includes(:user)
   end
 
   # GET /finances/1

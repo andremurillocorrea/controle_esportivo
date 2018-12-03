@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<%= search_form_for @q do |f| %>
+  <%= f.label :Nome %>
+  <%= f.search_field :name_cont %>
+
+<%= f.submit "Busca" %>
+  
+<% end %>
+
 <h1>Equipe de Natação</h1>
 
 <table>
@@ -41,8 +49,8 @@
           <td><%= user.category %></td>
           <!--td><%= user.description %></td-->
           <td><%= user.role %></td>
-
-          <% if @user.role == 'Técnico' %>
+		
+          <% if (@user.role == 'Técnico' || @user.role == 'Diretor') %>
             <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
             <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
           <% end %>
@@ -112,3 +120,8 @@
   <%= link_to 'Novo Usuário', new_user_path %>
 </div>
 
+<% if @user.role == 'Diretor' %>
+	<div>
+		<%= link_to 'Finanças', finances_path %>
+	</div>
+<% end %>

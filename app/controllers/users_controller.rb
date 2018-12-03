@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+ #metodos para a barra de pesquisa 
+    @q = User.ransack(params[:q])
+	@users = @q.result
     @user = User.find(session[:user_id])
   end
 
