@@ -3,6 +3,9 @@
   <%= f.label :Atleta %>
   <%= f.search_field :user_name_start %>
   
+  <%= f.label :Sexo %>
+  <%= f.select :user_sex_eq , ['Feminino','Masculino'], include_blank: true %>
+  
   <%= f.label :Estilo %>
   <%= f.select :style_eq, ['Borboleta', 'Costas', 'Peito', 'Livre', 'Medley'], include_blank: true %>
   

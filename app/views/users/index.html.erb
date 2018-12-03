@@ -3,6 +3,9 @@
 <%= search_form_for @q do |f| %>
   <%= f.label :Nome %>
   <%= f.search_field :name_cont %>
+  
+  <%= f.label :Sexo %>
+  <%= f.select :sex_eq , ['Feminino','Masculino'], include_blank: true %>
 
 <%= f.submit "Busca" %>
   
@@ -10,7 +13,16 @@
 
 <h1>Equipe de Natação</h1>
 
+<% @total = 0%>
+<% @users.each do |user| %>
+      <% if user.role == 'Atleta'%>
+		<% @total = @total + 1%>
+      <% end %>
+<% end %>
+
+
 <table>
+
   <thead>
     <tr>
       <th>Foto</th>
@@ -62,6 +74,8 @@
   </tbody>
 </table>
 
+<h3> Total de atletas: <%= @total %> </h3>
+
 <br>
 
 <h1>Gestão da Equipe</h1>
@@ -105,12 +119,13 @@
           <td><%= user.category %></td>
           <td><%= user.description %></td-->
           <td><%= user.role %></td>
-
-          <% if @user.role == 'Técnico' %>
-            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
-            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-          <% end %>
-
+		  <% if @user.role == 'Diretor' %>
+			  <% if user.role == 'Técnico' %>
+				<td><%= link_to image_tag('user.png',:size => '20x20'), user%></td>
+				<td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
+				<td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+			  <% end %>
+		  <% end %>
         </tr>
       <% end %>
     <% end %>
@@ -121,4 +136,8 @@
 <div class="new_user">
   <%= link_to 'Novo Usuário', new_user_path %>
 </div>
+<% end %>
+
+<% if (@user.role == 'Diretor')%>
+	<%= link_to "Finanças", finances_path %>	
 <% end %>
