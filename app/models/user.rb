@@ -39,6 +39,15 @@ class User < ApplicationRecord
 	
 	after_save :store_photo	
 	
+	def total=(val)
+        @total = val
+    end
+
+
+    def total
+        @total
+    end
+	
 	private
 		def store_photo
 			if @file_data
