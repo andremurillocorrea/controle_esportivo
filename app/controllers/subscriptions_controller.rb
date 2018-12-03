@@ -1,10 +1,12 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.all
+    @q = Subscription.ransack(params[:q])
+	@subscriptions = @q.result.includes(:event, :user)
+	@user = User.find(session[:user_id])
   end
 
   # GET /subscriptions/1
@@ -64,6 +66,11 @@ class SubscriptionsController < ApplicationController
   end
 
   private
+  
+    def set_user
+		@user = User.find(session[:user_id])
+	end
+		
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
       @subscription = Subscription.find(params[:id])

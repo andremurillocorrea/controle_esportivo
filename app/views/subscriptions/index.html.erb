@@ -1,6 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Subscriptions</h1>
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :Usuário %>
+  <%= f.search_field :user_name_cont %>
+  
+  <%= f.label :Nome_do_evento %>
+  <%= f.search_field :event_name_cont %>
+    
+  <%= f.label :Data_minima %>
+  <%= f.date_select :event_date_gteq, {order:  [:day, :month, :year],include_blank: true}   %>
+
+
+  <%= f.label :Data_maxima %>
+  <%= f.date_select :event_date_lteq, {order:  [:day, :month, :year],include_blank: true}   %>
+  
+  <%= f.submit "Busca" %>
+  </div>
+<% end %>
+
+<h1>Inscrições</h1>
 
 <table>
   <thead>
@@ -9,22 +28,23 @@
       <th>Event</th>
 	  <th>Date</th>
       <th>Status</th>
-      <th>Additional info</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+   
     <% @subscriptions.each do |subscription| %>
       <tr>
         <td><%= subscription.user.name %></td>
         <td><%= subscription.event.name %></td>
 		<td><%= subscription.event.date %></td>
         <td><%= subscription.status %></td>
-        <td><%= subscription.additional_info %></td>
-        <td><%= link_to 'Show', subscription %></td>
-        <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-        <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to 'Ver', subscription %></td>
+		<% if (@user.role == 'Técnico' || @user.role == 'Diretor' || @user.name == subscription.user.name) %>
+			<td><%= link_to image_tag('edit.png',:size => '20x20'), edit_subscription_path(subscription) %></td>
+			<td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
       </tr>
     <% end %>
   </tbody>

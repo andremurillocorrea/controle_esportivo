@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :presencas
   resources :treinos
   resources :subscriptions
   resources :events

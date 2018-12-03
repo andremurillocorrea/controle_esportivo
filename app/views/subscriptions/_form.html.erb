@@ -22,17 +22,17 @@
   </div>
 
   <div class="field">
-    <%= form.label :event_id %>
+    <%= form.label :Evento %>
     <%= form.collection_select(:event_id, Event.all, :id, :name, prompt: false)%>
   </div>
 
   <div class="field">
-    <%= form.label :status %>
+    <%= form.label :Status %>
     <%= form.select :status , ['Confirmed', 'Pendent']  %>
   </div>
 
   <div class="field">
-    <%= form.label :additional_info %>
+    <%= form.label :Informações_adicionais %>
     <%= form.text_area :additional_info %>
   </div>
 

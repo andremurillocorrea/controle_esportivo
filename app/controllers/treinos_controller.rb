@@ -4,7 +4,8 @@ class TreinosController < ApplicationController
   # GET /treinos
   # GET /treinos.json
   def index
-    @treinos = Treino.all
+    @q = Treino.ransack(params[:q])
+	@treinos = @q.result
   end
 
   # GET /treinos/1
@@ -69,6 +70,6 @@ class TreinosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def treino_params
-      params.require(:treino).permit(:Data, :Descricao, :user_ids => [])
+      params.require(:treino).permit(:Data, :Descricao, user_ids:[])
     end
 end

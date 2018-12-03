@@ -1,5 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<%= search_form_for @q do |f| %>
+  
+  <%= f.label :Data_minima %>
+  <%= f.date_select :Data_gteq, {order:  [:day, :month, :year],include_blank: true}   %>
+
+  <%= f.label :Data_maxima %>
+  <%= f.date_select :Data_lteq, {order:  [:day, :month, :year],include_blank: true}   %>
+  
+  <%= f.label :Descrição %>
+  <%= f.search_field :Descricao_cont  %>
+    
+  <%= f.submit "Busca" %>
+  
+<% end %>
+
 <h1>Treinos</h1>
 
 <table>

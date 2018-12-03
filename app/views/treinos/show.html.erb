@@ -10,13 +10,20 @@
   <%= @treino.Descricao %>
 </p>
 
+
 <p>
   <strong>Lista de presença:</strong>
   <% @treino.users.each do |user| %>
-		<%= user.name %>
+	<%= user.name %>
   <% end %>
 </p>
-	
+
+<p>
+  <strong>Presença total:</strong>
+  <%= @treino.users.count %>
+</p>
+  
+
 	
 </p>
 
