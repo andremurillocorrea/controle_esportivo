@@ -12,17 +12,17 @@
   <%= f.label :Distância %>
   <%= f.select :distance_eq, [ 50, 100, 200, 400, 800, 1500], include_blank: true %>
 
-  <%= f.label :pool_length %>
+  <%= f.label :Tamanho_da_piscina %>
   <%= f.select :pool_length_eq, [ 25, 50], include_blank: true %>
-    
-  <%= f.label :Data_minima %>
+   <div> 
+  <%= f.label :Data_inicial %>
   <%= f.date_select :date_gteq, {order:  [:day, :month, :year],include_blank: true}   %>
 
-  <%= f.label :Data_maxima %>
+  <%= f.label :Data_final %>
   <%= f.date_select :date_lteq, {order:  [:day, :month, :year],include_blank: true}   %>
     
   <%= f.submit "Busca" %>
-  
+  </div>
 <% end %>
 <h1>Desempenho</h1>
 

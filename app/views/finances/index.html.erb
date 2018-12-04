@@ -6,11 +6,11 @@
   <%= f.label :Referente %>
   <%= f.search_field :debt_cont %>
   
-  <%= f.label :Data_minima %>
+  <%= f.label :Data_inicial %>
   <%= f.date_select :created_at_gteq, {order:  [:day, :month, :year],include_blank: true}   %>
 
 
-  <%= f.label :Data_maxima %>
+  <%= f.label :Data_final %>
   <%= f.date_select :created_at_lteq, {order:  [:day, :month, :year],include_blank: true}   %>
   
   <%= f.label :Status %>

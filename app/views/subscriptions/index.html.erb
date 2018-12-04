@@ -8,11 +8,11 @@
   <%= f.label :Nome_do_evento %>
   <%= f.search_field :event_name_cont %>
     
-  <%= f.label :Data_minima %>
+  <%= f.label :Data_inicial %>
   <%= f.date_select :event_date_gteq, {order:  [:day, :month, :year],include_blank: true}   %>
 
 
-  <%= f.label :Data_maxima %>
+  <%= f.label :Data_final %>
   <%= f.date_select :event_date_lteq, {order:  [:day, :month, :year],include_blank: true}   %>
   
   <%= f.submit "Busca" %>
