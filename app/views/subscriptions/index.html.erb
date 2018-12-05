@@ -24,10 +24,10 @@
 <table>
   <thead>
     <tr>
-      <th>Usuário</th>
-      <th>Evento</th>
-	  <th>Data</th>
-      <th>Status</th>
+	  <th><%=sort_link(@q,:user_name, "Usuário") %></th>
+	  <th><%=sort_link(@q,:event_name, "Nome do evento")%></th>
+      <th><%=sort_link(@q,:event_date, "Data do Evento")%></th>
+      <th><%=sort_link(@q,:status, "Status")%></th>
       <th colspan="3"></th>
     </tr>
   </thead>

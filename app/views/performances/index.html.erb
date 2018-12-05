@@ -6,7 +6,7 @@
   <%= f.label :Sexo %>
   <%= f.select :user_sex_eq , ['Feminino','Masculino'], include_blank: true %>
   
-  <%= f.label :Estilo %>
+  <%= f.label :Modalidade %>
   <%= f.select :style_eq, ['Borboleta', 'Costas', 'Peito', 'Livre', 'Medley'], include_blank: true %>
   
   <%= f.label :Distância %>
@@ -29,12 +29,12 @@
 <table>
   <thead>
     <tr>
-	  <th>Atleta</th>
-      <th>Estilo</th>
-      <th>Distância</th>
-      <th>Tam. Piscina</th>
-      <th>Tempo</th>
-      <th>Data</th>
+      <th><%=sort_link(@q,:user_name, "Atleta") %></th>
+	  <th><%=sort_link(@q,:style, "Modalidade")%></th>
+      <th><%=sort_link(@q,:distance, "Distância")%></th>
+      <th><%=sort_link(@q,:pool_length, "Tam. Piscina")%></th>
+	  <th><%=sort_link(@q,:time,"Tempo")%></th>
+	  <th><%=sort_link(@q,:date,"Data")%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
