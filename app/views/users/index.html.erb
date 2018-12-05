@@ -65,6 +65,7 @@
           <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
           <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
           <% end %>
+
       <% end %>
 
       </tr>
@@ -102,7 +103,7 @@
         <tr>
           <td>
           <% if user.has_photo? %>
-            <%= link_to image_tag('profile.png',:size => '60x60') %>
+            <%= link_to image_tag('profile.png',:size => '60x60'),user %>
           <% else %>
             <%= image_tag 'profile.png',:size => '60x60' %>
           <% end %>
@@ -117,10 +118,21 @@
           <td><%= user.category %></td>
           <td><%= user.description %></td-->
           <td><%= user.role %></td>
-          <% if (@user.role == 'Diretor' || @user.role == 'Técnico')%>
+
+          <% if(user.role == 'Técnico')%>
+            <% if (@user.role == 'Diretor') %>
             <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
             <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+            <% end %>
           <% end %>
+
+          <% if(user.role == 'Diretor')%>
+            <% if (@user.role == 'Diretor') %>
+            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
+            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+            <% end %>
+          <% end %>
+
         </tr>
       <% end %>
     <% end %>

@@ -7,10 +7,10 @@
       <% if @user.has_photo? %>
         <div class="profile-img">
           <%= image_tag('profile.png',class: "rounded")%>
-          <div class="file btn btn-lg btn-primary">
+          <!--div class="file btn btn-lg btn-primary">
               Editar Foto
               <input type="file" name="file"/>
-          </div>
+          </div-->
         </div>
       <% else %>
         No photo.
@@ -111,10 +111,27 @@
         <td><%= finance.value %></td>
         <td><%= finance.status %></td>
         <!--<td><%= link_to 'Show', finance %></td>-->
-        <% if(@current_user.role == 'Técnico' || @current_user.role == 'Diretor') %>
-          <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_finance_path(finance)%></td>
-          <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), finance, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <% if(@profile_user.role == 'Atleta')%>
+          <% if(@current_user.role == 'Técnico' || @current_user.role == 'Diretor') %>
+            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_finance_path(finance)%></td>
+            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), finance, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
         <% end %>
+
+        <% if(@profile_user.role == 'Técnico')%>
+          <% if(@current_user.role == 'Diretor') %>
+            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_finance_path(finance)%></td>
+            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), finance, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
+        <% end %>
+
+        <% if(@profile_user.role == 'Diretor')%>
+          <% if(@current_user.role == 'Diretor') %>
+            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_finance_path(finance)%></td>
+            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), finance, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
+        <% end %>
+
       </tr>
     <% end %>
 	<tr>
@@ -133,50 +150,53 @@
 </div>
 </div>
 
-<div class="new_container">
-<div class="animation">
-<h1>Performances</h1>
+<% if (@profile_user.role == 'Atleta')%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Modalidade</th>
-      <th>Distância</th>
-      <th>Tamanho da Piscina</th>
-      <th>Tempo</th>
-      <th>Data</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="new_container">
+  <div class="animation">
+  <h1>Performances</h1>
 
-  <tbody>
-    <% @user.performances.each do |performance| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= performance.style %></td>
-        <td><%= String(performance.distance) + 'm' %></td>
-        <td><%= String(performance.pool_length) + 'm' %></td>
-        <% if performance.time >= 60 %>
-          <% @minute = Integer(performance.time)/60 %>
-          <% @remainder_sec = (performance.time%60).floor %>
-          <% @remainder = Integer((performance.time%1)*100)%>
-          <td><%= String(@minute) + '.' + String(@remainder_sec) + ':' + String(@remainder) %></td>
-        <% else %> 
-          <td><%= performance.time %></td>
-        <% end %>
-        <td><%= performance.date.strftime("%d/%m/%Y") %></td>
-        <!--td><%= link_to 'Show', performance %></td-->
-        <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_performance_path(performance)%></td>
-        <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), performance, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <th>Modalidade</th>
+        <th>Distância</th>
+        <th>Tamanho da Piscina</th>
+        <th>Tempo</th>
+        <th>Data</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="new_performance">
-<%= link_to 'Nova Performance', new_performance_path %>
-</div>
-</div>
-</div>
+    </thead>
 
+    <tbody>
+      <% @user.performances.each do |performance| %>
+        <tr>
+          <td><%= performance.style %></td>
+          <td><%= String(performance.distance) + 'm' %></td>
+          <td><%= String(performance.pool_length) + 'm' %></td>
+          <% if performance.time >= 60 %>
+            <% @minute = Integer(performance.time)/60 %>
+            <% @remainder_sec = (performance.time%60).floor %>
+            <% @remainder = Integer((performance.time%1)*100)%>
+            <td><%= String(@minute) + '.' + String(@remainder_sec) + ':' + String(@remainder) %></td>
+          <% else %> 
+            <td><%= performance.time %></td>
+          <% end %>
+          <td><%= performance.date.strftime("%d/%m/%Y") %></td>
+          <!--td><%= link_to 'Show', performance %></td-->
+          <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_performance_path(performance)%></td>
+          <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), performance, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="new_performance">
+  <%= link_to 'Nova Performance', new_performance_path %>
+  </div>
+  </div>
+  </div>
+
+<% end %>
 
 <div class="new_container" style="background-color:rgba(224,224,224,0.3);">
 <div class="animation">

@@ -1,12 +1,14 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  before_action :authorize
+  
   # GET /events
   # GET /events.json
   def index
     @q = Event.ransack(params[:q])
-	@events = @q.result.includes(:subscriptions)
-	@user = User.find(session[:user_id])
+    @events = @q.result.includes(:subscriptions)
+    @user = User.find(session[:user_id])
   end
 
   # GET /events/1
@@ -30,7 +32,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to :events, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to :events, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -66,8 +68,8 @@ class EventsController < ApplicationController
   private
   
     def set_user
-		@user = User.find(session[:user_id])
-	end
+      @user = User.find(session[:user_id])
+    end
 	
     # Use callbacks to share common setup or constraints between actions.
     def set_event

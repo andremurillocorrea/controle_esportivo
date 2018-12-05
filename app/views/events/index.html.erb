@@ -50,7 +50,7 @@
         <td><%= event.description %></td>
 		<td><%= event.subscriptions.count %></td>
 		<td><%= link_to 'Ver mais...', event %></td>
-		<% if (@user.role == 'Diretor' ) %>
+		<% if (@user.role == 'Diretor' || @user.role == 'Técnico') %>
 			<td><%= link_to image_tag('edit.png',:size => '20x20'), edit_event_path(event) %></td>
 			<td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
@@ -59,11 +59,10 @@
   </tbody>
 </table>
 
-<%= link_to 'Inscreva-se', new_subscription_path %>
-
-
 <br>
 
-<% if (@user.role == 'Diretor' ) %>
-	<%= link_to 'Criar novo Evento', new_event_path %>
+<p style="text-align:center"><%= link_to 'Inscreva-se', new_subscription_path %></p>
+
+<% if (@user.role == 'Diretor' || @user.role == 'Técnico') %>
+	<p style="text-align:center"><%= link_to 'Criar novo Evento', new_event_path %></p>
 <% end %>

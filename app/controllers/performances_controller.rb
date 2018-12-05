@@ -1,6 +1,8 @@
 class PerformancesController < ApplicationController
   before_action :set_performance, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  before_action :authorize
+
   # GET /performances
   # GET /performances.json
   def index
@@ -30,7 +32,7 @@ class PerformancesController < ApplicationController
 
     respond_to do |format|
       if @performance.save
-        format.html { redirect_to @performance, notice: 'Performance was successfully created.' }
+        format.html { redirect_to @user, notice: 'Performance was successfully created.' }
         format.json { render :show, status: :created, location: @performance }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class PerformancesController < ApplicationController
   def update
     respond_to do |format|
       if @performance.update(performance_params)
-        format.html { redirect_to @performance, notice: 'Performance was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Performance was successfully updated.' }
         format.json { render :show, status: :ok, location: @performance }
       else
         format.html { render :edit }

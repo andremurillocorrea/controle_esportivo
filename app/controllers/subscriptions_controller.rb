@@ -1,12 +1,13 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  before_action :authorize
   # GET /subscriptions
   # GET /subscriptions.json
   def index
     @q = Subscription.ransack(params[:q])
-	@subscriptions = @q.result.includes(:event, :user)
-	@user = User.find(session[:user_id])
+    @subscriptions = @q.result.includes(:event, :user)
+    @user = User.find(session[:user_id])
   end
 
   # GET /subscriptions/1
@@ -32,7 +33,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+        format.html { redirect_to @user, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -46,7 +47,7 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }

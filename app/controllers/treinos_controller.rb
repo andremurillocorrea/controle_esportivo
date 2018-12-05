@@ -1,6 +1,8 @@
 class TreinosController < ApplicationController
   before_action :set_treino, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  before_action :authorize
+
   # GET /treinos
   # GET /treinos.json
   def index
@@ -31,7 +33,7 @@ class TreinosController < ApplicationController
 
     respond_to do |format|
       if @treino.save
-        format.html { redirect_to @treino, notice: 'Treino was successfully created.' }
+        format.html { redirect_to :treinos, notice: 'Treino was successfully created.' }
         format.json { render :show, status: :created, location: @treino }
       else
         format.html { render :new }
@@ -45,7 +47,7 @@ class TreinosController < ApplicationController
   def update
     respond_to do |format|
       if @treino.update(treino_params)
-        format.html { redirect_to @treino, notice: 'Treino was successfully updated.' }
+        format.html { redirect_to :treinos, notice: 'Treino was successfully updated.' }
         format.json { render :show, status: :ok, location: @treino }
       else
         format.html { render :edit }

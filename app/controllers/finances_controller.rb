@@ -1,6 +1,7 @@
 class FinancesController < ApplicationController
   before_action :set_finance, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  before_action :authorize
 
   # GET /finances
   # GET /finances.json

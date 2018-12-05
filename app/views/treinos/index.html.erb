@@ -33,7 +33,7 @@
   </thead>
   
 <% if (@user.role == 'Atleta' ) %>
-	<%= 'Sua presença:' + String(number_to_percentage((@user.treinos.count.to_f/@total_treinos) *100)) %> 
+	<h4 style="text-align:center">Sua presença: <%= String(number_to_percentage((@user.treinos.count.to_f/@total_treinos)*100)) %></h2> 
 <% end %>
 
   <tbody>
@@ -54,5 +54,5 @@
 
 <br>
 <% if (@user.role == 'Técnico') %>
-	<%= link_to 'Incluir treino', new_treino_path %>
+	<p style="text-align:center"><%= link_to 'Incluir treino', new_treino_path %></p>
 <% end %>

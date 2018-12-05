@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /users
   # GET /users.json
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @current_user = User.find(session[:user_id])
+    @profile_user = User.find(params[:id])
   end
 
   # GET /users/new
