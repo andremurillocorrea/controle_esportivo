@@ -10,7 +10,12 @@
   
   <%= f.label :Descrição %>
   <%= f.search_field :Descricao_cont  %>
-    
+  
+  <% if (@user.role == 'Técnico') %>
+  <%= f.label :Presença_do_atleta %>
+  <%= f.select :users_name_in, options_from_collection_for_select( User.all, :name, :name), include_blank: true   %>
+  <% end %> 
+  
   <%= f.submit "Busca" %>
   
 <% end %>
@@ -26,6 +31,10 @@
       <th colspan="3"></th>
     </tr>
   </thead>
+  
+<% if (@user.role == 'Atleta' ) %>
+	<%= 'Sua presença:' + String(number_to_percentage((@user.treinos.count.to_f/@total_treinos) *100)) %> 
+<% end %>
 
   <tbody>
     <% @treinos.each do |treino| %>
