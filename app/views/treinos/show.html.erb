@@ -10,15 +10,23 @@
   <%= @treino.Descricao %>
 </p>
 
+
 <p>
   <strong>Lista de presença:</strong>
   <% @treino.users.each do |user| %>
-		<%= user.name %>
+	<%= user.name %>
   <% end %>
 </p>
-	
+
+<p>
+  <strong>Presença total:</strong>
+  <%= @treino.users.count %>
+</p>
+  
+
 	
 </p>
-
-<%= link_to 'Edit', edit_treino_path(@treino) %> |
-<%= link_to 'Back', treinos_path %>
+<%if @user.role == 'Técnico' %>
+	<%= link_to 'Editar', edit_treino_path(@treino) %> |
+<% end %>	
+<%= link_to 'Voltar', treinos_path %>

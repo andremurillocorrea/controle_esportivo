@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+ #metodos para a barra de pesquisa 
+    @q = User.ransack(params[:q])
+	@users = @q.result
     @user = User.find(session[:user_id])
   end
 
@@ -30,7 +32,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -71,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :document, :pwd, :age, :height, :weight, :category, :description, :role, :finances, :performances, :subscriptions, :photo, :presenca)
+      params.require(:user).permit(:name, :email, :document, :pwd, :age, :height, :weight, :category, :description, :role, :finances, :performances, :subscriptions, :photo, :treinos, :sex)
     end
 end

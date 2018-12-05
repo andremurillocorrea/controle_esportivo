@@ -1,15 +1,34 @@
 <p id="notice"><%= notice %></p>
+<%= search_form_for @q do |f| %>
+  <%= f.label :Iniciais_do_nome %>
+  <%= f.search_field :user_name_start %>
+  
+  <%= f.label :Descrição %>
+  <%= f.search_field :debt_cont %>
+  
+  <%= f.label :Data_inicial %>
+  <%= f.date_select :created_at_gteq, {order:  [:day, :month, :year],include_blank: true}   %>
 
-<h1>Finances</h1>
+
+  <%= f.label :Data_final %>
+  <%= f.date_select :created_at_lteq, {order:  [:day, :month, :year],include_blank: true}   %>
+  
+  <%= f.label :Status %>
+  <%= f.select :status_eq, ["Não pago" , "Pago" ], include_blank: true %>
+  
+  <%= f.submit "Busca" %>
+<% end %>
+ 
+<h1>Finanças</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Add Date</th>
-	  <th>User</th>
-      <th>Debt</th>
-      <th>Value</th>
-      <th>Status</th>
+	  <th><%= sort_link(@q,:created_at, "Data") %></th>
+	  <th><%= sort_link(@q, :user_name, "Nome") %></th>
+      <th><%= sort_link(@q,:debt, "Descrição" ) %></th>
+      <th><%= sort_link(@q,:value, "Valor") %></th>
+      <th><%= sort_link(@q,:status, "Status") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,28 +36,28 @@
   <tbody>
     <% @total = 0%>
     <% @finances.each do |finance| %>
-      <% if finance.status == "Not Paid"%>
+      <% if finance.status == "Não pago"%>
         <% @total = @total + finance.value%>
       <% end %>
       <tr>
         <td><%= finance.created_at.strftime("%d/%m/%Y") %></td>
 		<td><%= finance.user.name %></td>
         <td><%= finance.debt %></td>
-        <td><%= finance.value %></td>
+        <td><%= 'R$' + String(finance.value) %></td>
         <td><%= finance.status %></td>
         <!--<td><%= link_to 'Show', finance %></td>-->
-        <td><%= link_to 'Edit Debt', edit_finance_path(finance) %></td>
-        <td><%= link_to 'Destroy', finance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to link_to image_tag('edit.png',:size => '20x20'), edit_finance_path(finance) %></td>
+        <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), finance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     <tr>
        <td></td>
-      <td><p><strong>Debt Total</strong></p></td>
-      <td><%= @total %></td>
+      <td><p><strong>Total pendente:</strong></p></td>
+      <td><%= 'R$' + String(@total) %></td>
     </tr>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Finance', new_finance_path %>
+<%= link_to 'Criar nova cobrança', new_finance_path %>

@@ -1,10 +1,12 @@
 class PerformancesController < ApplicationController
   before_action :set_performance, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user
   # GET /performances
   # GET /performances.json
   def index
-    @performances = Performance.all
+    @q = Performance.ransack(params[:q])
+	@performances = @q.result.includes(:user)
+	@user = User.find(session[:user_id])
   end
 
   # GET /performances/1
@@ -63,6 +65,11 @@ class PerformancesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+	
+	def set_user
+		@user = User.find(session[:user_id])
+	end
+	
     def set_performance
       @performance = Performance.find(params[:id])
     end

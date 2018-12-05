@@ -1,21 +1,40 @@
 <p id="notice"><%= notice %></p>
 
+<%= search_form_for @q do |f| %>
+  <%= f.label :Nome %>
+  <%= f.search_field :name_cont %>
+  
+  <%= f.label :Sexo %>
+  <%= f.select :sex_eq , ['Feminino','Masculino'], include_blank: true %>
+  
+  <%= f.label :Modalidade %>
+  <%= f.select :category_eq , ['Borboleta','Costas', 'Peito', 'Livre', 'Medley'], include_blank: true %>
+
+<%= f.submit "Busca" %>
+  
+<% end %>
+
 <h1>Equipe de Natação</h1>
 
+<% @total = 0%>
+<% @users.each do |user| %>
+      <% if user.role == 'Atleta'%>
+		<% @total = @total + 1%>
+      <% end %>
+<% end %>
+
+
 <table>
+
   <thead>
     <tr>
       <th>Foto</th>
-      <th>Nome</th>
-      <!--th>Email</th>
-      <th>Documento</th>
-      <th>Senha</th-->
-      <th>Idade</th>
-      <th>Altura</th>
-      <th>Peso</th>
-      <th>Modalidade</th>
-      <!--th>Descrição</th-->
-      <th>Função</th>
+	  <th><%=sort_link(@q,:name, "Nome") %></th>
+      <th><%=sort_link(@q,:age, "Idade")%></th>
+      <th><%=sort_link(@q,:height, "Altura")%></th>
+	  <th><%=sort_link(@q,:weight,"Peso")%></th>
+	  <th><%=sort_link(@q,:category,"Modalidade")%></th>
+	  <th><%=sort_link(@q,:role,"Função")%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -41,8 +60,9 @@
           <td><%= user.category %></td>
           <!--td><%= user.description %></td-->
           <td><%= user.role %></td>
-
-          <% if @user.role == 'Técnico' %>
+		
+          <% if (@user.role == 'Técnico' || @user.role == 'Diretor') %>
+			<td><%= link_to image_tag('user.png',:size => '20x20'), user%></td>
             <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
             <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
           <% end %>
@@ -53,6 +73,8 @@
   </tbody>
 </table>
 
+<h3> Total de atletas: <%= @total %> </h3>
+
 <br>
 
 <h1>Gestão da Equipe</h1>
@@ -61,7 +83,7 @@
   <thead>
     <tr>
       <th>Foto</th>
-      <th>Nome</th>
+      <th><%=sort_link(@q,:name, "Nome") %></th>
       <!--th>Email</th>
       <th>Documento</th>
       <th>Senha</th>
@@ -70,7 +92,7 @@
       <th>Peso</th>
       <th>Modalidade</th>
       <th>Descrição</th-->
-      <th>Papel</th>
+      <th><%=sort_link(@q,:role,"Papel")%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -96,19 +118,25 @@
           <td><%= user.category %></td>
           <td><%= user.description %></td-->
           <td><%= user.role %></td>
-
-          <% if @user.role == 'Técnico' %>
-            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
-            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-          <% end %>
-
+		  <% if @user.role == 'Diretor' %>
+			  <% if user.role == 'Técnico' %>
+				<td><%= link_to image_tag('user.png',:size => '20x20'), user%></td>
+				<td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
+				<td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+			  <% end %>
+		  <% end %>
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
 
+<% if @user.role == 'Diretor' %>
 <div class="new_user">
   <%= link_to 'Novo Usuário', new_user_path %>
 </div>
+<% end %>
 
+<% if (@user.role == 'Diretor')%>
+	<%= link_to "Finanças", finances_path %>	
+<% end %>

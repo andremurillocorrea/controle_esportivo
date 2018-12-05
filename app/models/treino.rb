@@ -1,7 +1,5 @@
 class Treino < ApplicationRecord
 
-	has_many :presenca
-	
-	has_many :users , through: :presenca
+	has_and_belongs_to_many :users
 	
 end

@@ -1,10 +1,14 @@
 class FinancesController < ApplicationController
   before_action :set_finance, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
   # GET /finances
   # GET /finances.json
   def index
-    @finances = Finance.order(:id)
+    #@finances = Finance.order(:id)
+	@q = Finance.ransack(params[:q])
+	@finances = @q.result.includes(:user)
+	@user = User.find(session[:user_id])
   end
 
   # GET /finances/1
@@ -62,6 +66,11 @@ class FinancesController < ApplicationController
   end
 
   private
+  
+    def set_user
+		@user = User.find(session[:user_id])
+	end
+	
     # Use callbacks to share common setup or constraints between actions.
     def set_finance
       @finance = Finance.find(params[:id])

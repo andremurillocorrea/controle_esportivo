@@ -1,10 +1,8 @@
 class User < ApplicationRecord
 	#has_secure_password
-    validates :name, :email, :document, :pwd, :age, :height, :weight, :category, :description, presence: true
+    validates :name, :email, :document, :pwd, :age, :height, :weight, :category, :description, :sex, presence: true
 	
-    has_many :presenca
-	
-	has_many :treinos, through: :presenca
+    has_and_belongs_to_many :treinos
 	
 	has_many :finances
 	
@@ -40,6 +38,15 @@ class User < ApplicationRecord
     validates :pwd, length: {:within => 8..30}
 	
 	after_save :store_photo	
+	
+	def total=(val)
+        @total = val
+    end
+
+
+    def total
+        @total
+    end
 	
 	private
 		def store_photo

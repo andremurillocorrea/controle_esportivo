@@ -1,29 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Style:</strong>
+  <strong>Estilo:</strong>
   <%= @performance.style %>
 </p>
 
 <p>
-  <strong>Distance:</strong>
+  <strong>Distância:</strong>
   <%= @performance.distance %>
 </p>
 
 <p>
-  <strong>Pool length:</strong>
+  <strong>Tamanho da Piscina:</strong>
   <%= @performance.pool_length %>
 </p>
 
 <p>
-  <strong>Time:</strong>
+  <strong>Tempo:</strong>
   <%= @performance.time %>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @performance.date %>
+  <strong>Data:</strong>
+  <%= @performance.date.strftime("%d/%m/%Y") %>
 </p>
 
-<%= link_to 'Edit', edit_performance_path(@performance) %> |
-<%= link_to 'Back', performances_path %>
+<%= link_to 'Editar', edit_performance_path(@performance) %> |
+<%= link_to 'Voltar', performances_path %>
+
