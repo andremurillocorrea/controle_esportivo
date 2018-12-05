@@ -62,9 +62,8 @@
           <td><%= user.role %></td>
 		
           <% if (@user.role == 'Técnico' || @user.role == 'Diretor') %>
-			<td><%= link_to image_tag('user.png',:size => '20x20'), user%></td>
-            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
-            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
+          <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
           <% end %>
       <% end %>
 
@@ -92,7 +91,7 @@
       <th>Peso</th>
       <th>Modalidade</th>
       <th>Descrição</th-->
-      <th><%=sort_link(@q,:role,"Papel")%></th>
+      <th><%=sort_link(@q,:role,"Função")%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -118,13 +117,10 @@
           <td><%= user.category %></td>
           <td><%= user.description %></td-->
           <td><%= user.role %></td>
-		  <% if @user.role == 'Diretor' %>
-			  <% if user.role == 'Técnico' %>
-				<td><%= link_to image_tag('user.png',:size => '20x20'), user%></td>
-				<td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
-				<td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-			  <% end %>
-		  <% end %>
+          <% if (@user.role == 'Diretor' || @user.role == 'Técnico')%>
+            <td><%= link_to image_tag('edit.png',:size => '20x20'),edit_user_path(user)%></td>
+            <td><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), user, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>

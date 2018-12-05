@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2018_12_03_180723) do
     t.index ["user_id"], name: "index_performances_on_user_id"
   end
 
+  create_table "presencas", force: :cascade do |t|
+    t.integer "treino_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["treino_id"], name: "index_presencas_on_treino_id"
+    t.index ["user_id"], name: "index_presencas_on_user_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
@@ -79,8 +88,8 @@ ActiveRecord::Schema.define(version: 2018_12_03_180723) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"
-    t.string "extension"
     t.string "photo"
+    t.string "extension"
     t.string "sex"
   end
 

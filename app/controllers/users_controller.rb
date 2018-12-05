@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
  #metodos para a barra de pesquisa 
     @q = User.ransack(params[:q])
-	@users = @q.result
+	  @users = @q.result
     @user = User.find(session[:user_id])
   end
 

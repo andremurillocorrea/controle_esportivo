@@ -5,8 +5,8 @@ class TreinosController < ApplicationController
   # GET /treinos.json
   def index
     @q = Treino.ransack(params[:q])
-	@treinos = @q.result
-	@user = User.find(session[:user_id])
+    @treinos = @q.result
+    @user = User.find(session[:user_id])
   end
 
   # GET /treinos/1

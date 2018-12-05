@@ -32,7 +32,7 @@ class FinancesController < ApplicationController
 
     respond_to do |format|
       if @finance.save
-        format.html { redirect_to @finance, notice: 'Finance was successfully created.' }
+        format.html { redirect_to @user, notice: 'Finance was successfully created.' }
         format.json { render :show, status: :created, location: @finance }
       else
         format.html { render :new }
