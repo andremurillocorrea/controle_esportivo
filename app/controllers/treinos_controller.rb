@@ -4,9 +4,10 @@ class TreinosController < ApplicationController
   # GET /treinos
   # GET /treinos.json
   def index
+    @total_treinos = Treino.all.count
     @q = Treino.ransack(params[:q])
-    @treinos = @q.result
-    @user = User.find(session[:user_id])
+	@treinos = @q.result.includes(:users)
+	@user = User.find(session[:user_id])
   end
 
   # GET /treinos/1
