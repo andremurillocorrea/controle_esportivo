@@ -18,13 +18,14 @@
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
-            <% @user.subscriptions.each do |subscription| %>
+            <td class="day wday-2 future current-month"><%= day.strftime("%d/%m") %>
+            <% @user.subscriptions.each_with_index do |subscription, index| %>
               <% if subscription.event.date.strftime("%Y-%m-%d") == day.strftime("%Y-%m-%d") %>
-                <td class="day wday-2 future current-month"><%= day.strftime("%d/%m/%Y") %><br><%= subscription.event.name %><br><%= link_to image_tag('edit.png',:size => '20x20'),edit_subscription_path(subscription)%><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), subscription, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-              <% else %>
-                <td class="day wday-2 future current-month"><%= day.strftime("%d/%m/%Y") %></td>
+                <br><%= subscription.event.name %>
+                <%= link_to image_tag('edit.png',:size => '20x20'),edit_subscription_path(subscription)%><%= link_to image_tag('rubbish-bin.png',:size => '20x20'), subscription, method: :delete, data: { confirm: 'Você tem certeza?' } %>
               <% end %>
-            <% end %>    
+            <% end %>
+            </td>
           <% end %>
         </tr>
       <% end %>
