@@ -6,14 +6,14 @@
     <div class="col-md-4">
       <% if @user.has_photo? %>
         <div class="profile-img">
-          <%= image_tag('profile.png',class: "rounded")%>
+          <%= image_tag(@user.photo_path,class: "rounded",size: '170x170')%>
           <!--div class="file btn btn-lg btn-primary">
               Editar Foto
               <input type="file" name="file"/>
           </div-->
         </div>
       <% else %>
-        No photo.
+        <%= image_tag('profile.png',class: "rounded", size: '170x170')%>  
       <% end %>
     </div>
 
